@@ -1,0 +1,29 @@
+﻿<Window x:Class="GameOfLife.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="695" Width="1149">
+    <Grid Background="White">
+        <TextBox HorizontalAlignment="Left" Margin="203,172,0,0" Name="textBox1" VerticalAlignment="Top" Width="56" Height="18" TextAlignment="Center" />
+        <Button Content="Load grid" Height="27" HorizontalAlignment="Left" Margin="272,180,0,0" Name="button1" VerticalAlignment="Top" Width="126" Click="button1_Click" FontFamily="Consolas" Cursor="Arrow" Foreground="Red" BorderBrush="Red" Background="Black" />
+        <ComboBox Height="27" HorizontalAlignment="Left" Margin="223,239,0,0" Name="comboBox1" VerticalAlignment="Top" Width="121" />
+        <Slider Height="23" HorizontalAlignment="Left" Margin="223,499,0,0" Name="speedSlider" VerticalAlignment="Top" Width="140" ValueChanged="speedSlider_ValueChanged" />
+        <Button Content="Restart" Height="27" HorizontalAlignment="Left" Margin="201,451,0,0" Name="restart" VerticalAlignment="Top" Width="126" FontFamily="Consolas" DataContext="{Binding}" Click="restart_Click" />
+        <Button Content="Random selection" Height="27" Margin="141,352,0,0" Name="button2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="126" FontFamily="Consolas" Background="#FF020202" BorderBrush="Red" Foreground="Red" />
+        <Button Content="Start/Stop" Height="27" HorizontalAlignment="Left" Margin="201,408,0,0" Name="buttonStart" VerticalAlignment="Top" Width="126" Click="buttonStart_Click" FontFamily="Consolas"/>
+        <Button Content="Previous iteration" Height="27" HorizontalAlignment="Left" Margin="57,408,0,0" Name="previousIteration" VerticalAlignment="Top" Width="126" FontFamily="Consolas" Foreground="Red" BorderBrush="Red" Background="Black" Click="previousIteration_Click" />
+        <Button Content="Next iteration" Height="27" HorizontalAlignment="Left" Margin="345,408,0,0" Name="nextIteration" VerticalAlignment="Top" Width="126" Click="nextIteration_Click" FontFamily="Consolas"/>
+        <TextBox HorizontalAlignment="Left" Margin="203,197,0,0" Name="textBox2" VerticalAlignment="Top" Width="56" TextAlignment="Center" />
+        <Canvas Height="574" HorizontalAlignment="Left" Margin="495,42,0,0" Name="canvas1" VerticalAlignment="Top" Width="574" Background="White"></Canvas>
+        <Label Content="Game of Life" Height="54" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" Margin="160,91,0,0" Width="203" FontSize="29" FontFamily="Consolas" Background="White" Foreground="Black" BorderBrush="#FF262626" />
+        <Label Content="Rows" Height="28" HorizontalAlignment="Left" Margin="141,170,0,0" Name="label2" VerticalAlignment="Top" FontFamily="Consolas" Foreground="Black" />
+        <Label Content="Columns" Height="28" HorizontalAlignment="Left" Margin="141,193,0,0" Name="label3" VerticalAlignment="Top" FontFamily="Consolas" Foreground="Black" />
+        <Label Content="Type mode" Height="28" HorizontalAlignment="Left" Margin="141,239,0,0" Name="label4" VerticalAlignment="Top" FontFamily="Consolas"/>
+        <Label Content="Population" HorizontalAlignment="Left" Margin="141,302,0,326" Name="label5" FontFamily="Consolas"/>
+        <Label Content="Speed" FontFamily="Consolas" Height="28" HorizontalAlignment="Left" Margin="160,494,0,0" Name="label7" VerticalAlignment="Top" />
+        <TextBox Height="18" HorizontalAlignment="Left" Margin="223,304,0,0" Name="populationTextBox" VerticalAlignment="Top" Width="56" />
+        <TextBox Height="18" HorizontalAlignment="Right" Margin="0,312,704,0" Name="lastSelectedCellBox" VerticalAlignment="Top" Width="56" />
+        <Label Content="Last Clicked Cell" Height="28" HorizontalAlignment="Left" Margin="331,285,0,0" Name="label6" VerticalAlignment="Top" FontFamily="Consolas"/>
+        <Button Content="Save simulation" FontFamily="Consolas" Height="27" HorizontalAlignment="Left" Margin="57,451,0,0" Name="saveSimulation" VerticalAlignment="Top" Width="126" Click="saveSimulation_Click" />
+        <Button Content="Load simulation" FontFamily="Consolas" Height="27" HorizontalAlignment="Left" Margin="345,451,0,0" Name="loadSimualtion" VerticalAlignment="Top" Width="126" Click="loadSimualtion_Click" />
+    </Grid>
+</Window>
