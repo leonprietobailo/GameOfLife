@@ -13,6 +13,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections;
 using System.Windows.Threading;
+using System.IO;
+using Microsoft.Win32;
+
 
 namespace GameOfLife
 {
@@ -171,7 +174,6 @@ namespace GameOfLife
         {
             timer.Stop();
             mesh.saveGrid();
-            
         }
 
         private void loadSimualtion_Click(object sender, RoutedEventArgs e)

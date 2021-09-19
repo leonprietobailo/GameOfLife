@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using Microsoft.Win32;
+
 
 namespace GameOfLife
 {
@@ -247,70 +249,83 @@ namespace GameOfLife
 
         public void saveGrid()
         {
-            StreamWriter file = new StreamWriter("grid.txt");
-            for (int n = 0; n < this.i; n++)
+            SaveFileDialog dig = new SaveFileDialog();
+            dig.Filter = "(*.txt*)|*.*";
+            if (dig.ShowDialog() == true)
             {
-                for (int s = 0; s < this.j; s++)
+                //File.WriteAllText(dig.FileName, "hola");
+                for (int n = 0; n < this.i; n++)
                 {
-                    if (array[n, s].getStatus())
-                        file.Write("1");
-                    else
-                        file.Write("0");
-                    if (s != j - 1)
+                    for (int s = 0; s < this.j; s++)
                     {
-                        file.Write(" ");
+                        if (array[n, s].getStatus())
+                            File.AppendAllText(dig.FileName,"1");
+                        else
+                            File.AppendAllText(dig.FileName, "0");
+                        if (s != j - 1)
+                        {
+                            File.AppendAllText(dig.FileName, " ");
+                        }
+                    }
+                    if (n != i - 1)
+                    {
+                        File.AppendAllText(dig.FileName, "\n");
                     }
                 }
-                if (n != i - 1)
-                {
-                    file.Write("\n");
-                }
+
             }
-            file.Close();
         }
 
         public void loadGrid()
         {
-            int n = 0;
-            int s = 0;
+            var n = 0;
+            var s = 0;
             Boolean readColumns = false;
-            StreamReader countFile = new StreamReader("grid.txt");
-            string strReadline = countFile.ReadLine();
-            while (strReadline != null)
+
+            OpenFileDialog dig = new OpenFileDialog();
+            dig.Multiselect = true;
+            dig.Filter = "(*.txt*)|*.*";
+            dig.DefaultExt = ".txt";
+            if (dig.ShowDialog() == true)
             {
-                if (!readColumns)
+                StreamReader countFile = new StreamReader(dig.FileName);
+                string strReadline = countFile.ReadLine();
+                while (strReadline != null)
                 {
-                    s = strReadline.Length;
-                    readColumns = true;
-                }
-                n++;
-                strReadline = countFile.ReadLine();
-            }
-            countFile.Close();
-            
-            StreamReader readFile = new StreamReader("grid.txt");
-            int rows = n;
-            int columns = (s + 1) / 2;
-            Grid loadedGrid = new Grid(rows, columns);
-            strReadline = readFile.ReadLine();
-            s = 0;
-            while (strReadline != null)
-            {
-                string[] subs = strReadline.Split(' ');
-                for (n = 0; n < subs.Length; n++)
-                {
-                    if (subs[n] == "1")
+                    if (!readColumns)
                     {
-                        loadedGrid.changeCellStatus(s, n);
+                        s = strReadline.Length;
+                        readColumns = true;
                     }
+                    n++;
+                    strReadline = countFile.ReadLine();
                 }
+                countFile.Close();
+
+                StreamReader readFile = new StreamReader(dig.FileName);
+                int rows = n;
+                int columns = (s + 1) / 2;
+                Grid loadedGrid = new Grid(rows, columns);
                 strReadline = readFile.ReadLine();
-                s++;
+                s = 0;
+                while (strReadline != null)
+                {
+                    string[] subs = strReadline.Split(' ');
+                    for (n = 0; n < subs.Length; n++)
+                    {
+                        if (subs[n] == "1")
+                        {
+                            loadedGrid.changeCellStatus(s, n);
+                        }
+                    }
+                    strReadline = readFile.ReadLine();
+                    s++;
+                }
+                readFile.Close();
+                this.i = rows;
+                this.j = columns;
+                this.array = loadedGrid.array;
             }
-            readFile.Close();
-            this.i = rows;
-            this.j = columns;
-            this.array = loadedGrid.array;
         }
     }
 }
