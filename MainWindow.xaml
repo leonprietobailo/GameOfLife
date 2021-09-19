@@ -4,7 +4,7 @@
         Title="MainWindow" Height="695" Width="1149">
     <Grid Background="White">
         <TextBox HorizontalAlignment="Left" Margin="203,172,0,0" Name="textBox1" VerticalAlignment="Top" Width="56" Height="18" TextAlignment="Center" />
-        <Button Content="Load grid" Height="27" HorizontalAlignment="Left" Margin="281,163,0,0" Name="button1" VerticalAlignment="Top" Width="126" Click="button1_Click" FontFamily="Consolas" Cursor="Arrow" Foreground="Red" BorderBrush="Red" Background="Black" />
+        <Button Content="Load grid" Height="27" HorizontalAlignment="Left" Margin="281,163,0,0" Name="button1" VerticalAlignment="Top" Width="126" Click="button1_Click" FontFamily="Consolas" Cursor="Arrow" Foreground="Black" BorderBrush="Black" Background="White" />
         <ComboBox HorizontalAlignment="Left" Margin="223,239,0,0" Name="comboBox1" VerticalAlignment="Top" SelectionChanged="comboBox1_SelectionChanged" Visibility="Hidden" Width="120"></ComboBox>
         <Slider Height="23" HorizontalAlignment="Left" Margin="223,546,0,0" Name="speedSlider" VerticalAlignment="Top" Width="140" ValueChanged="speedSlider_ValueChanged" />
         <Button Content="Restart" Height="27" HorizontalAlignment="Left" Margin="201,451,0,0" Name="restart" VerticalAlignment="Top" Width="126" FontFamily="Consolas" DataContext="{Binding}" Click="restart_Click" />
