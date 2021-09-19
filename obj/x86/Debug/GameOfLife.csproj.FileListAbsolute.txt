@@ -44,3 +44,14 @@ D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeV2\GameOfL
 D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeV2\GameOfLife\obj\x86\Debug\GameOfLife.g.resources
 D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeV2\GameOfLife\obj\x86\Debug\GameOfLife.Properties.Resources.resources
 D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeV2\GameOfLife\obj\x86\Debug\GameOfLife.csproj.GenerateResource.Cache
+D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\GameOfLife.exe
+D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\GameOfLife.pdb
+D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\bin\Debug\GameOfLife.exe
+D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\bin\Debug\GameOfLife.pdb
+D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\MainWindow.baml
+D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\MainWindow.g.cs
+D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\App.g.cs
+D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\GameOfLife_MarkupCompile.cache
+D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\GameOfLife.g.resources
+D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\GameOfLife.Properties.Resources.resources
+D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\GameOfLife.csproj.GenerateResource.Cache

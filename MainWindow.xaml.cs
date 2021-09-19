@@ -167,7 +167,35 @@ namespace GameOfLife
         private void loadSimualtion_Click(object sender, RoutedEventArgs e)
         {
             timer.Stop();
+            mesh = new Grid(1, 1);
             mesh.loadGrid();
+            int[] size = new int[2];
+            size = mesh.getSize();
+            textBox1.Text = Convert.ToString(size[0]);
+            textBox2.Text = Convert.ToString(size[1]);
+            nRows = size[0];
+            nColumns = size[1];
+            rectangles = new Rectangle[nRows, nColumns];
+            for (int i = 0; i < nRows; i++)
+            {
+                for (int j = 0; j < nColumns; j++)
+                {
+                    Rectangle r = new Rectangle();
+                    r.Width = canvas1.Width / nColumns;
+                    r.Height = canvas1.Height / nRows;
+                    r.StrokeThickness = 1;
+                    r.Stroke = Brushes.Black;
+                    canvas1.Children.Add(r);
+
+                    Canvas.SetTop(r, i * r.Height);
+                    Canvas.SetLeft(r, j * r.Width);
+
+                    r.Tag = new Point(i, j);
+                    r.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
+                    rectangles[i, j] = r;
+                }
+            }
+            history.Push(mesh.deepCopy());
             updateMesh();
         }
 

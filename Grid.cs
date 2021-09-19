@@ -11,6 +11,7 @@ namespace GameOfLife
         //ATRIBUTOS
         int i, j;
         Cell[,] array;
+        int strategy, boundaries;
 
         //CONSTRUCTOR
         public Grid(int iIn, int jIn)
@@ -33,8 +34,26 @@ namespace GameOfLife
             i = array.GetLength(0);
             j = array.GetLength(1);
         }
-
         //METODOS
+
+        public void setStrategy(int s)
+        {
+            strategy = s;
+        }
+
+        public void setBoundaries(int b)
+        {
+            boundaries = b;
+        }
+
+        public int[] getSize()
+        {
+            int[] size = new int[2];
+            size[0] = this.i;
+            size[1] = this.j;
+            return size;
+        }
+        
         public void reset()
         {
             for (int n = 0; n < this.i; n++)
@@ -56,6 +75,12 @@ namespace GameOfLife
             return array[iIn, jIn].getStatus();
         }
 
+        public Grid deepCopy()
+        {
+            Grid deepCopyGrid = new Grid(this);
+            return deepCopyGrid;
+        }
+
         public void conwayAlgorithm()
         {
             Cell[,] newIt = new Cell[this.i, this.j];
@@ -63,7 +88,7 @@ namespace GameOfLife
             {
                 for (int s = 0; s < this.j; s++)
                 {
-                    int infected = 8 - chooseSurroundings(n, s);
+                    int infected = 8 - aliveBoundaries(n, s);
                     newIt[n,s] = new Cell();
                     if (array[n, s].getStatus()) // C = 1
                     {
@@ -84,13 +109,7 @@ namespace GameOfLife
             array = newIt;
         }
 
-        public Grid deepCopy()
-        {
-            Grid deepCopyGrid = new Grid(this);
-            return deepCopyGrid;
-        }
-
-        public int chooseSurroundings(int iIn, int jIn)
+        public int aliveBoundaries(int iIn, int jIn)
         {
             // VECTOR = [N, NE, E, SE, S, SW, W, NW];
             // BOUNDARIES ARE HEALED.
@@ -118,7 +137,7 @@ namespace GameOfLife
             return healthy;
         }
 
-        public void iterate(int algorithm, int boundaries)
+        public void iterate()
         {
 
         }
