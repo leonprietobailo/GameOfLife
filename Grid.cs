@@ -88,7 +88,7 @@ namespace GameOfLife
             {
                 for (int s = 0; s < this.j; s++)
                 {
-                    int infected = 8 - aliveBoundaries(n, s);
+                    int infected = 8 - getBoundaries(n, s);
                     newIt[n,s] = new Cell();
                     if (array[n, s].getStatus()) // C = 1
                     {
@@ -109,10 +109,49 @@ namespace GameOfLife
             array = newIt;
         }
 
+        public void covid19Algorithm()
+        {
+            Cell[,] newIt = new Cell[this.i, this.j];
+            for (int n = 0; n < this.i; n++)
+            {
+                for (int s = 0; s < this.j; s++)
+                {
+                    int infected = 8 - getBoundaries(n, s);
+                    newIt[n, s] = new Cell();
+                    if (array[n, s].getStatus()) // C = 1
+                    {
+                        if (infected == 2 || infected == 3 || infected == 4)
+                        {
+                            newIt[n, s].changeStatus();
+                        }
+                    }
+                    else // C = 0
+                    {
+                        if (infected == 3 || infected == 4)
+                        {
+                            newIt[n, s].changeStatus();
+                        }
+                    }
+                }
+            }
+            array = newIt;
+        }
+
+        public int getBoundaries(int iIn, int jIn)
+        {
+            if (boundaries == 0)
+            {
+                return aliveBoundaries(iIn, jIn);
+            }
+            else
+            {
+                return reflectiveBoundaries(iIn, jIn);
+            }
+        }
+
+
         public int aliveBoundaries(int iIn, int jIn)
         {
-            // VECTOR = [N, NE, E, SE, S, SW, W, NW];
-            // BOUNDARIES ARE HEALED.
             int healthy = 0;
             for (int n = iIn - 1; n <= iIn + 1; n++)
             {
@@ -137,9 +176,57 @@ namespace GameOfLife
             return healthy;
         }
 
+        public int reflectiveBoundaries(int iIn, int jIn)
+        {
+            int healthy = 0;
+            int nT, sT;
+            for (int n = iIn - 1; n <= iIn + 1; n++)
+            {
+                for (int s = jIn - 1; s <= jIn + 1; s++)
+                {
+                    nT = n;
+                    sT = s;
+
+                    if (n < 0)
+                    {
+                        nT = n + 2;
+                    }
+                    if (s < 0)
+                    {
+                        sT = s + 2;
+                    }
+                    if (n >= i)
+                    {
+                        nT = n - 2;
+                    }
+                    if (s >= j)
+                    {
+                        sT = s - 2;
+                    }
+
+                    if (nT == iIn && sT == jIn)
+                    {
+                    }
+                    else if (!array[nT, sT].getStatus())
+                    {
+                        healthy++;
+                    }
+                }
+            }
+            return healthy;
+
+        }
+
         public void iterate()
         {
-
+            if (strategy == 0)
+            {
+                conwayAlgorithm();
+            }
+            else
+            {
+                covid19Algorithm();
+            }
         }
 
         public int countInfected()

@@ -1,0 +1,26 @@
+﻿<Window x:Class="GameOfLife.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Strategies" ResizeMode="NoResize" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="346" Width="468">
+    <Grid Height="330">
+        <TextBlock Height="547" HorizontalAlignment="Left" Margin="12,9,0,0" Name="textBlock1" Text="Conway Algorithm:
+                   
+   C   N                 new C
+   1   0,1             ->  0  # Lonely
+   1   5,6,7,8         ->  0  # Overcrowded
+   1   2,3,4           ->  1  # Lives
+   0   3,4             ->  1  # It takes three to give birth!
+   0   0,1,2,5,6,7,8   ->  0  # Barren
+                   
+Covid-19 Algorithm:
+                   
+   C   N                 new C
+   1   0,1             ->  0  # Lonely
+   1   4,5,6,7,8       ->  0  # Overcrowded
+   1   2,3             ->  1  # Lives
+   0   3               ->  1  # It takes three to give birth!
+   0   0,1,2,4,5,6,7,8 ->  0  # Barren
+                   
+A cell C is represented by a 1 when alive, or 0 when dead. N corresponds to the sum of the eight-location neighbourhood cells." VerticalAlignment="Top" Width="422" DataContext="{Binding}" FontFamily="Consolas" TextWrapping="Wrap" TextAlignment="Justify" />
+    </Grid>
+</Window>

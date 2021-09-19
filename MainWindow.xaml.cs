@@ -32,9 +32,10 @@ namespace GameOfLife
         public MainWindow()
         {
             InitializeComponent();
-            comboBox1.Items.Add("Classic");
-            comboBox1.Items.Add("Modern");
-            comboBox1.Items.Add("Covid19");
+            comboBox1.Items.Add("Conway");
+            comboBox1.Items.Add("Covid-19");
+            comboBox2.Items.Add("Dead boundaries");
+            comboBox2.Items.Add("Reflective boundaries");
             timer.Tick += new EventHandler(dispatcherTimer_Tick);
             timer.Interval = new TimeSpan(Convert.ToInt64(1/100e-9));
         }
@@ -70,6 +71,13 @@ namespace GameOfLife
                 }
             }
             history.Push(mesh.deepCopy());
+            comboBox1.SelectedIndex = 0;
+            comboBox1.Visibility = Visibility.Visible;
+            label4.Visibility = Visibility.Visible;
+
+            comboBox2.SelectedIndex = 0;
+            comboBox2.Visibility = Visibility.Visible;
+            label8.Visibility = Visibility.Visible;
         }
         private void rectangle_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -120,10 +128,8 @@ namespace GameOfLife
         {
             timer.Stop();
             history.Push(mesh.deepCopy());
-            mesh.conwayAlgorithm();
+            mesh.iterate();
             updateMesh();
-            
-
         }
 
         private void previousIteration_Click(object sender, RoutedEventArgs e)
@@ -146,7 +152,7 @@ namespace GameOfLife
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             history.Push(mesh.deepCopy());
-            mesh.conwayAlgorithm();
+            mesh.iterate();
             updateMesh();
         }
 
@@ -197,6 +203,28 @@ namespace GameOfLife
             }
             history.Push(mesh.deepCopy());
             updateMesh();
+        }
+
+        private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            mesh.setStrategy(comboBox1.SelectedIndex);
+        }
+
+        private void comboBox2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            mesh.setBoundaries(comboBox2.SelectedIndex);
+        }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            Window1 win1 = new Window1();
+            win1.Show();
+        }
+
+        private void button3_Click(object sender, RoutedEventArgs e)
+        {
+            Window2 win2 = new Window2();
+            win2.Show();
         }
 
  

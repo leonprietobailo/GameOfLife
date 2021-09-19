@@ -55,3 +55,5 @@ D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOf
 D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\GameOfLife.g.resources
 D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\GameOfLife.Properties.Resources.resources
 D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\GameOfLife.csproj.GenerateResource.Cache
+D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\Window1.baml
+D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\Window1.g.cs
