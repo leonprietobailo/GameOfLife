@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/0_tm7kwaks61tigatm.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/228px-game_of_life_infinite2.svg.png")]
 
 

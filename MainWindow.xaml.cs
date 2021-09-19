@@ -78,6 +78,9 @@ namespace GameOfLife
             comboBox2.SelectedIndex = 0;
             comboBox2.Visibility = Visibility.Visible;
             label8.Visibility = Visibility.Visible;
+
+            image1.Visibility = Visibility.Visible;
+            image2.Visibility = Visibility.Visible;
         }
         private void rectangle_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -168,6 +171,7 @@ namespace GameOfLife
         {
             timer.Stop();
             mesh.saveGrid();
+            
         }
 
         private void loadSimualtion_Click(object sender, RoutedEventArgs e)
@@ -203,6 +207,17 @@ namespace GameOfLife
             }
             history.Push(mesh.deepCopy());
             updateMesh();
+
+            comboBox1.SelectedIndex = 0;
+            comboBox1.Visibility = Visibility.Visible;
+            label4.Visibility = Visibility.Visible;
+
+            comboBox2.SelectedIndex = 0;
+            comboBox2.Visibility = Visibility.Visible;
+            label8.Visibility = Visibility.Visible;
+
+            image1.Visibility = Visibility.Visible;
+            image2.Visibility = Visibility.Visible;
         }
 
         private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -215,19 +230,15 @@ namespace GameOfLife
             mesh.setBoundaries(comboBox2.SelectedIndex);
         }
 
-        private void button2_Click(object sender, RoutedEventArgs e)
+        private void image1_Click(object sender, MouseButtonEventArgs e)
         {
             Window1 win1 = new Window1();
             win1.Show();
         }
-
-        private void button3_Click(object sender, RoutedEventArgs e)
+        private void image2_Click(object sender, MouseButtonEventArgs e)
         {
             Window2 win2 = new Window2();
             win2.Show();
         }
-
- 
-
     }
 }
