@@ -41,6 +41,7 @@ namespace GameOfLife
             comboBox2.Items.Add("Reflective boundaries");
             timer.Tick += new EventHandler(dispatcherTimer_Tick);
             timer.Interval = new TimeSpan(Convert.ToInt64(1/100e-9));
+            mesh = new Grid(0, 0);
         }
 
         private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
@@ -50,40 +51,87 @@ namespace GameOfLife
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            nRows = Convert.ToInt32(textBox1.Text);
-            nColumns = Convert.ToInt32(textBox2.Text);
-            mesh = new Grid(nRows, nColumns);
-            rectangles = new Rectangle[nRows, nColumns];
-            for(int i = 0; i < nRows; i++){
-                for (int j = 0; j < nColumns; j++)
+            try
+            {
+                if (Convert.ToInt32(textBox1.Text) != 0 && Convert.ToInt32(textBox1.Text) != 0)
                 {
-                    Rectangle r = new Rectangle();
-                    r.Width = canvas1.Width / nColumns;
-                    r.Height = canvas1.Height / nRows;
-                    r.Fill = new SolidColorBrush(Colors.White);
-                    r.StrokeThickness = 1;
-                    r.Stroke = Brushes.Black;
-                    canvas1.Children.Add(r);
+                    nRows = Convert.ToInt32(textBox1.Text);
+                    nColumns = Convert.ToInt32(textBox2.Text);
+                    mesh = new Grid(nRows, nColumns);
+                    rectangles = new Rectangle[nRows, nColumns];
+                    for (int i = 0; i < nRows; i++)
+                    {
+                        for (int j = 0; j < nColumns; j++)
+                        {
+                            Rectangle r = new Rectangle();
+                            r.Width = canvas1.Width / nColumns;
+                            r.Height = canvas1.Height / nRows;
+                            r.Fill = new SolidColorBrush(Colors.White);
+                            r.StrokeThickness = 1;
+                            r.Stroke = Brushes.Black;
+                            canvas1.Children.Add(r);
 
-                    Canvas.SetTop(r, i * r.Height);
-                    Canvas.SetLeft(r, j * r.Width);
+                            Canvas.SetTop(r, i * r.Height);
+                            Canvas.SetLeft(r, j * r.Width);
 
-                    r.Tag = new Point(i, j);
-                    r.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
-                    rectangles[i, j] = r;
+                            r.Tag = new Point(i, j);
+                            r.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
+                            rectangles[i, j] = r;
+                        }
+                    }
+                    history.Push(mesh.deepCopy());
+                    comboBox1.SelectedIndex = 0;
+                    comboBox2.SelectedIndex = 0;
+                    showElements();
+                    if (mesh.getSize()[0] == 0 || mesh.getSize()[1] == 0)
+                    {
+                        label5.Visibility = Visibility.Visible;
+                    }
+                }
+                else
+                {
+                    label5.Visibility = Visibility.Visible;
                 }
             }
-            history.Push(mesh.deepCopy());
-            comboBox1.SelectedIndex = 0;
-            comboBox1.Visibility = Visibility.Visible;
-            label4.Visibility = Visibility.Visible;
+            catch (FormatException)
+            {
+                label5.Visibility = Visibility.Visible;
+            }
+            catch (OverflowException)
+            {
+                label5.Visibility = Visibility.Visible;
+            }
+        }
 
-            comboBox2.SelectedIndex = 0;
-            comboBox2.Visibility = Visibility.Visible;
-            label8.Visibility = Visibility.Visible;
-
-            image1.Visibility = Visibility.Visible;
-            image2.Visibility = Visibility.Visible;
+        private void showElements()
+        {
+            if (mesh.getSize()[0] != 0 && mesh.getSize()[1] != 0)
+            {
+                comboBox1.Visibility = Visibility.Visible;
+                label4.Visibility = Visibility.Visible;
+                comboBox2.Visibility = Visibility.Visible;
+                label8.Visibility = Visibility.Visible;
+                image1.Visibility = Visibility.Visible;
+                image2.Visibility = Visibility.Visible;
+                populationLabel.Visibility = Visibility.Visible;
+                populationTextBox.Visibility = Visibility.Visible;
+                lastClickedCellLabel.Visibility = Visibility.Visible;
+                lastSelectedCellBox.Visibility = Visibility.Visible;
+                speedLabel.Visibility = Visibility.Visible;
+                speedSlider.Visibility = Visibility.Visible;
+                previousIteration.Visibility = Visibility.Visible;
+                buttonStart.Visibility = Visibility.Visible;
+                nextIteration.Visibility = Visibility.Visible;
+                restart.Visibility = Visibility.Visible;
+                saveSimulation.Visibility = Visibility.Visible;
+                label5.Visibility = Visibility.Hidden;
+                textBox1.Text = Convert.ToString(mesh.getSize()[0]);
+                textBox2.Text = Convert.ToString(mesh.getSize()[1]);
+            }
+            else
+            {
+                
+            }
         }
         private void rectangle_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -120,11 +168,24 @@ namespace GameOfLife
         {
             if (!timerStatus)
             {
+                saveSimulation.IsEnabled = false;
+                restart.IsEnabled = false;
+                previousIteration.IsEnabled = false;
+                nextIteration.IsEnabled = false;
+                buttonStart.Content = "Stop";
+                // PONER COLOR ROJO
+
                 timer.Start();
                 timerStatus = true;
             }
             else
             {
+                saveSimulation.IsEnabled = true;
+                restart.IsEnabled = true;
+                previousIteration.IsEnabled = true;
+                nextIteration.IsEnabled = true;
+                buttonStart.Content = "Start";
+                // PONER COLOR VERDE
                 timer.Stop();
                 timerStatus = false;
             }
@@ -132,7 +193,6 @@ namespace GameOfLife
 
         private void nextIteration_Click(object sender, RoutedEventArgs e)
         {
-            timer.Stop();
             history.Push(mesh.deepCopy());
             mesh.iterate();
             updateMesh();
@@ -140,7 +200,6 @@ namespace GameOfLife
 
         private void previousIteration_Click(object sender, RoutedEventArgs e)
         {
-            timer.Stop();
             mesh = history.Pop();
             updateMesh();
             
@@ -172,54 +231,50 @@ namespace GameOfLife
 
         private void saveSimulation_Click(object sender, RoutedEventArgs e)
         {
-            timer.Stop();
             mesh.saveGrid();
         }
 
         private void loadSimualtion_Click(object sender, RoutedEventArgs e)
         {
-            timer.Stop();
-            mesh = new Grid(1, 1);
-            mesh.loadGrid();
-            int[] size = new int[2];
-            size = mesh.getSize();
-            textBox1.Text = Convert.ToString(size[0]);
-            textBox2.Text = Convert.ToString(size[1]);
-            nRows = size[0];
-            nColumns = size[1];
-            rectangles = new Rectangle[nRows, nColumns];
-            for (int i = 0; i < nRows; i++)
+            try
             {
-                for (int j = 0; j < nColumns; j++)
+                timer.Stop();
+                mesh.loadGrid();
+                int[] size = new int[2];
+                size = mesh.getSize();
+
+                nRows = size[0];
+                nColumns = size[1];
+                rectangles = new Rectangle[nRows, nColumns];
+                for (int i = 0; i < nRows; i++)
                 {
-                    Rectangle r = new Rectangle();
-                    r.Width = canvas1.Width / nColumns;
-                    r.Height = canvas1.Height / nRows;
-                    r.StrokeThickness = 1;
-                    r.Stroke = Brushes.Black;
-                    canvas1.Children.Add(r);
+                    for (int j = 0; j < nColumns; j++)
+                    {
+                        Rectangle r = new Rectangle();
+                        r.Width = canvas1.Width / nColumns;
+                        r.Height = canvas1.Height / nRows;
+                        r.StrokeThickness = 1;
+                        r.Stroke = Brushes.Black;
+                        canvas1.Children.Add(r);
 
-                    Canvas.SetTop(r, i * r.Height);
-                    Canvas.SetLeft(r, j * r.Width);
+                        Canvas.SetTop(r, i * r.Height);
+                        Canvas.SetLeft(r, j * r.Width);
 
-                    r.Tag = new Point(i, j);
-                    r.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
-                    rectangles[i, j] = r;
+                        r.Tag = new Point(i, j);
+                        r.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
+                        rectangles[i, j] = r;
+                    }
                 }
+                history.Push(mesh.deepCopy());
+                updateMesh();
+                comboBox1.SelectedIndex = 0;
+                comboBox2.SelectedIndex = 0;
+                showElements();
             }
-            history.Push(mesh.deepCopy());
-            updateMesh();
-
-            comboBox1.SelectedIndex = 0;
-            comboBox1.Visibility = Visibility.Visible;
-            label4.Visibility = Visibility.Visible;
-
-            comboBox2.SelectedIndex = 0;
-            comboBox2.Visibility = Visibility.Visible;
-            label8.Visibility = Visibility.Visible;
-
-            image1.Visibility = Visibility.Visible;
-            image2.Visibility = Visibility.Visible;
+            catch (FileFormatException)
+            {
+                label5.Visibility = Visibility.Visible;
+            }
         }
 
         private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)

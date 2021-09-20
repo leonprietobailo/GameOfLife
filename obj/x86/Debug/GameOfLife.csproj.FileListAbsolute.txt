@@ -72,3 +72,5 @@ C:\Users\veron\Desktop\SIM\Código\CodigoGit\GameOfLife\obj\x86\Debug\GameOfLife
 C:\Users\veron\Desktop\SIM\Código\CodigoGit\GameOfLife\obj\x86\Debug\GameOfLife.g.resources
 C:\Users\veron\Desktop\SIM\Código\CodigoGit\GameOfLife\obj\x86\Debug\GameOfLife.Properties.Resources.resources
 C:\Users\veron\Desktop\SIM\Código\CodigoGit\GameOfLife\obj\x86\Debug\GameOfLife.csproj.GenerateResource.Cache
+D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\Window2.baml
+D:\Drive UPC\omegaisugly\UPC\4A\SIM\Proyecto SIM\GameOfLife\GameOfLifeGIT\GameOfLife\obj\x86\Debug\Window2.g.cs

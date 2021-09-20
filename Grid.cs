@@ -283,7 +283,7 @@ namespace GameOfLife
             Boolean readColumns = false;
 
             OpenFileDialog dig = new OpenFileDialog();
-            dig.Multiselect = true;
+            dig.Multiselect = false;
             dig.Filter = "(*.txt*)|*.*";
             dig.DefaultExt = ".txt";
             if (dig.ShowDialog() == true)
@@ -317,6 +317,13 @@ namespace GameOfLife
                         {
                             loadedGrid.changeCellStatus(s, n);
                         }
+                        else if (subs[n] == "0")
+                        {
+                        }
+                        else{
+                            throw new FileFormatException();
+                        }
+
                     }
                     strReadline = readFile.ReadLine();
                     s++;
