@@ -66,9 +66,9 @@ namespace GameOfLife
                             Rectangle r = new Rectangle();
                             r.Width = canvas1.Width / nColumns;
                             r.Height = canvas1.Height / nRows;
-                            r.Fill = new SolidColorBrush(Colors.White);
+                            r.Fill = new SolidColorBrush(Colors.Transparent);
                             r.StrokeThickness = 1;
-                            r.Stroke = Brushes.Black;
+                            r.Stroke = Brushes.White;
                             canvas1.Children.Add(r);
 
                             Canvas.SetTop(r, i * r.Height);
@@ -121,6 +121,9 @@ namespace GameOfLife
                 speedSlider.Visibility = Visibility.Visible;
                 previousIteration.Visibility = Visibility.Visible;
                 buttonStart.Visibility = Visibility.Visible;
+                buttonStart.Background = Brushes.SpringGreen;
+                buttonStart.BorderBrush = Brushes.White;
+                buttonStart.Foreground = Brushes.White;
                 nextIteration.Visibility = Visibility.Visible;
                 restart.Visibility = Visibility.Visible;
                 saveSimulation.Visibility = Visibility.Visible;
@@ -153,11 +156,18 @@ namespace GameOfLife
                 {
                     if (mesh.getCellStatus(i, j))
                     {
-                        rectangles[i, j].Fill = new SolidColorBrush(Colors.Black);
+                        if (mesh.getStrategy()==0)
+                        {   
+                            rectangles[i, j].Fill = new SolidColorBrush(Colors.Aqua);
+                        }
+                        else
+                        {
+                            rectangles[i, j].Fill = new SolidColorBrush(Colors.Red);
+                        }
                     }
                     else
                     {
-                        rectangles[i, j].Fill = new SolidColorBrush(Colors.White);
+                        rectangles[i, j].Fill = new SolidColorBrush(Colors.Transparent);
                     }
                 }
             }
@@ -173,7 +183,9 @@ namespace GameOfLife
                 previousIteration.IsEnabled = false;
                 nextIteration.IsEnabled = false;
                 buttonStart.Content = "Stop";
-                // PONER COLOR ROJO
+                buttonStart.Background = Brushes.Red;
+                buttonStart.BorderBrush = Brushes.White;
+                buttonStart.Foreground = Brushes.White;
 
                 timer.Start();
                 timerStatus = true;
@@ -185,7 +197,9 @@ namespace GameOfLife
                 previousIteration.IsEnabled = true;
                 nextIteration.IsEnabled = true;
                 buttonStart.Content = "Start";
-                // PONER COLOR VERDE
+                buttonStart.Background= Brushes.SpringGreen;
+                buttonStart.BorderBrush = Brushes.White;
+                buttonStart.Foreground = Brushes.White;
                 timer.Stop();
                 timerStatus = false;
             }
@@ -202,7 +216,6 @@ namespace GameOfLife
         {
             mesh = history.Pop();
             updateMesh();
-            
         }
 
         private void restart_Click(object sender, RoutedEventArgs e)
@@ -254,7 +267,7 @@ namespace GameOfLife
                         r.Width = canvas1.Width / nColumns;
                         r.Height = canvas1.Height / nRows;
                         r.StrokeThickness = 1;
-                        r.Stroke = Brushes.Black;
+                        r.Stroke = Brushes.White;
                         canvas1.Children.Add(r);
 
                         Canvas.SetTop(r, i * r.Height);
@@ -280,6 +293,7 @@ namespace GameOfLife
         private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             mesh.setStrategy(comboBox1.SelectedIndex);
+            updateMesh();
         }
 
         private void comboBox2_SelectionChanged(object sender, SelectionChangedEventArgs e)

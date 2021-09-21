@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/228px-game_of_life_infinite2.svg.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/reflective%20boundaries.png")]
 
 

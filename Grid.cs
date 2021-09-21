@@ -43,6 +43,10 @@ namespace GameOfLife
             strategy = s;
         }
 
+        public int getStrategy()
+        {  
+            return this.strategy;
+        }
         public void setBoundaries(int b)
         {
             boundaries = b;
@@ -228,6 +232,7 @@ namespace GameOfLife
             else
             {
                 covid19Algorithm();
+
             }
         }
 
