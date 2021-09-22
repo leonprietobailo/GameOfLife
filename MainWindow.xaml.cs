@@ -27,7 +27,7 @@ namespace GameOfLife
         int nRows, nColumns;
         Rectangle[,] rectangles;
         Stack<Grid> history = new Stack<Grid>();
-        Grid mesh;
+        Grid mesh, copy1;
         DispatcherTimer timer = new DispatcherTimer();
         Boolean timerStatus = false;
         long ticks;
@@ -42,6 +42,7 @@ namespace GameOfLife
             timer.Tick += new EventHandler(dispatcherTimer_Tick);
             timer.Interval = new TimeSpan(Convert.ToInt64(1 / 100e-9));
             mesh = new Grid(0, 0);
+
 
         }
 
@@ -138,7 +139,7 @@ namespace GameOfLife
             //casilla.Content = "(" + p.X + "," + p.Y + ")"; // Informamos al usuario de las coordenadas
             //reg.Fill = new SolidColorBrush(Colors.Black); // Ponemos en negro la casilla
             mesh.changeCellStatus(Convert.ToInt32(p.X), Convert.ToInt32(p.Y));
-            lastSelectedCellBox.Text = "(" + Convert.ToString(p.X) + "," + Convert.ToString(p.Y) + ")";
+            lastSelectedCellBox.Text = "(" + Convert.ToString(p.Y) + "," + Convert.ToString(p.X) + ")";
             updateMesh();
         }
 
@@ -190,13 +191,16 @@ namespace GameOfLife
         {
             if (!timerStatus)
             {
-                buttonStart.Content = "Stop";
-                buttonStart.Background = Brushes.Red;
-                buttonStart.BorderBrush = Brushes.White;
-                buttonStart.Foreground = Brushes.White;
+                if (!mesh.isLastIteration())
+                {
+                    buttonStart.Content = "Stop";
+                    buttonStart.Background = Brushes.Red;
+                    buttonStart.BorderBrush = Brushes.White;
+                    buttonStart.Foreground = Brushes.White;
 
-                timer.Start();
-                timerStatus = true;
+                    timer.Start();
+                    timerStatus = true;
+                }
             }
             else
             {
@@ -237,9 +241,9 @@ namespace GameOfLife
 
         private void restart_Click(object sender, RoutedEventArgs e)
         {
+            history.Clear();
             timer.Stop();
             mesh.reset();
-            history.Clear();
             history.Push(mesh.deepCopy());
             updateMesh();
 
@@ -269,10 +273,16 @@ namespace GameOfLife
         {
             try
             {
+                copy1 = mesh.deepCopy();
                 timer.Stop();
                 mesh.reset();
-                updateMesh();
                 mesh.loadGrid();
+                
+                if (mesh.isClean() || mesh == null)
+                {
+                    mesh = copy1.deepCopy();
+                }
+
                 int[] size = new int[2];
                 size = mesh.getSize();
 

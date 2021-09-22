@@ -32,7 +32,21 @@ namespace GameOfLife
 
         public Grid(Grid mesh)
         {
-            array = mesh.array;
+            array = new Cell[mesh.getSize()[0], mesh.getSize()[1]];
+
+            for (int n = 0; n < mesh.i; n++)
+            {
+                for (int s = 0; s < mesh.j; s++)
+                {
+                    array[n, s] = new Cell();
+                    if (mesh.getCellStatus(n,s))
+                    {
+                        array[n, s].changeStatus();
+                    }
+                }
+            }
+
+
             i = array.GetLength(0);
             j = array.GetLength(1);
         }
