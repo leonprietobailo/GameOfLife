@@ -119,10 +119,10 @@
     <Resource Include="Images\228px-Game_of_life_infinite2.svg.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Deadboundaries1.png" />
+    <Resource Include="Images\DeadBoundaries.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\reflective boundaries.png" />
+    <Resource Include="Images\ReflectiveBoundaries.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
