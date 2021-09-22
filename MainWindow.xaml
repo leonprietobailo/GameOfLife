@@ -1,7 +1,7 @@
 ﻿<Window x:Class="GameOfLife.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Game of life" Height="718" Width="1149" Icon="/GameOfLife;component/Images/GameIcon.png" ResizeMode="CanMinimize" OpacityMask="#FF565656" FontWeight="Normal" WindowStyle="SingleBorderWindow" Foreground="#FF565656" BorderBrush="#FF565656" Background="#FF565656">
+        Title="Game of life" Height="718" Width="1149" Icon="/GameOfLife;component/Images/GameIcon.png" ResizeMode="CanMinimize" OpacityMask="#FF565656" FontWeight="Normal" WindowStyle="SingleBorderWindow" Foreground="#FF565656" BorderBrush="#FF565656" Background="#FF565656" WindowStartupLocation="CenterScreen">
 
     <Grid Background="#FF232323" Height="745">
         
