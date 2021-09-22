@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/reflectiveboundaries.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/deadboundaries.png")]
 
 
