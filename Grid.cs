@@ -258,7 +258,6 @@ namespace GameOfLife
             dig.Filter = "(*.txt*)|*.*";
             if (dig.ShowDialog() == true)
             {
-                //File.WriteAllText(dig.FileName, "hola");
                 for (int n = 0; n < this.i; n++)
                 {
                     for (int s = 0; s < this.j; s++)
@@ -339,5 +338,39 @@ namespace GameOfLife
                 this.array = loadedGrid.array;
             }
         }
+
+        public Boolean isLastIteration()
+        {
+            Grid copy;
+            copy = this.deepCopy();
+            copy.iterate();
+            for (int n = 0; n < this.i; n++)
+            {
+                for (int s = 0; s < this.j; s++)
+                {
+                    if (!copy.getCellStatus(n,s) == this.getCellStatus(n,s))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public Boolean isClean()
+        {
+            for (int n = 0; n < this.i; n++)
+            {
+                for (int s = 0; s < this.j; s++)
+                {
+                    if (this.getCellStatus(n, s))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
     }
+
 }

@@ -42,6 +42,7 @@
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="223,284,0,0" Name="comboBox2" VerticalAlignment="Top" Width="130" Visibility="Hidden" SelectionChanged="comboBox2_SelectionChanged" FontFamily="Consolas" BorderBrush="Black" TabIndex="5" Foreground="Black" Background="Black" />
         <Image Height="23" Name="image1" Stretch="Fill" Width="23" Source="/GameOfLife;component/Images/Info.png" Margin="368,244,0,0" Visibility="Hidden" MouseLeftButtonDown="image1_Click" VerticalAlignment="Top" HorizontalAlignment="Left" />
         <Image Height="23" Margin="368,284,0,0" Name="image2" Stretch="Fill" Width="23" Source="/GameOfLife;component/Images/Info.png" Visibility="Hidden" MouseLeftButtonDown="image2_Click" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <Label Content="Wrong inputs!" FontFamily="Consolas" Margin="223,138,808,490" Name="label5" Visibility="Hidden" Foreground="Red" FontWeight="Bold" />
+        <Label Content="Wrong inputs!" FontFamily="Consolas" Margin="223,132,808,496" Name="label5" Visibility="Hidden" Foreground="Red" FontWeight="Bold" />
+        <TextBlock Height="26" HorizontalAlignment="Left" Margin="495,12,0,0" Name="textStatus" Text="TextBlock" VerticalAlignment="Top" Width="574" TextAlignment="Center" Foreground="Red" FontFamily="Consolas" FontSize="18" FontWeight="Bold" Visibility="Hidden" />
     </Grid>
 </Window>

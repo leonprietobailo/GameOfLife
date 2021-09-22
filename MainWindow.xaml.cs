@@ -31,7 +31,6 @@ namespace GameOfLife
         DispatcherTimer timer = new DispatcherTimer();
         Boolean timerStatus = false;
         long ticks;
-        //Color color;
 
         public MainWindow()
         {
@@ -43,19 +42,13 @@ namespace GameOfLife
             timer.Tick += new EventHandler(dispatcherTimer_Tick);
             timer.Interval = new TimeSpan(Convert.ToInt64(1/100e-9));
             mesh = new Grid(0, 0);
-            //color = Color.FromRgb(0, 255, 255);
-        }
-
-        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (Convert.ToInt32(textBox1.Text) != 0 && Convert.ToInt32(textBox1.Text) != 0)
+                if (Convert.ToInt32(textBox1.Text) > 1 && Convert.ToInt32(textBox1.Text) > 1)
                 {
                     nRows = Convert.ToInt32(textBox1.Text);
                     nColumns = Convert.ToInt32(textBox2.Text);
@@ -86,6 +79,7 @@ namespace GameOfLife
                     comboBox1.SelectedIndex = 0;
                     comboBox2.SelectedIndex = 0;
                     showElements();
+                    previousIterationVisibility();
                     if (mesh.getSize()[0] == 0 || mesh.getSize()[1] == 0)
                     {
                         label5.Visibility = Visibility.Visible;
@@ -111,6 +105,7 @@ namespace GameOfLife
             if (mesh.getSize()[0] != 0 && mesh.getSize()[1] != 0)
             {
                 comboBox1.Visibility = Visibility.Visible;
+                textStatus.Visibility = Visibility.Visible;
                 label4.Visibility = Visibility.Visible;
                 comboBox2.Visibility = Visibility.Visible;
                 label8.Visibility = Visibility.Visible;
@@ -122,20 +117,14 @@ namespace GameOfLife
                 lastSelectedCellBox.Visibility = Visibility.Visible;
                 speedLabel.Visibility = Visibility.Visible;
                 speedSlider.Visibility = Visibility.Visible;
-                previousIteration.Visibility = Visibility.Visible;
-                buttonStart.Visibility = Visibility.Visible;
                 buttonStart.Background = Brushes.SpringGreen;
                 buttonStart.BorderBrush = Brushes.White;
                 buttonStart.Foreground = Brushes.White;
-                nextIteration.Visibility = Visibility.Visible;
-                restart.Visibility = Visibility.Visible;
-                saveSimulation.Visibility = Visibility.Visible;
                 label5.Visibility = Visibility.Hidden;
                 textBox1.Text = Convert.ToString(mesh.getSize()[0]);
                 textBox2.Text = Convert.ToString(mesh.getSize()[1]);
-            }
-            else
-            {
+                restart.Visibility = Visibility.Hidden;
+                saveSimulation.Visibility = Visibility.Hidden;
                 
             }
         }
@@ -175,9 +164,52 @@ namespace GameOfLife
                 }
             }
             populationTextBox.Text = Convert.ToString(mesh.countInfected());
+
+            if (mesh.isLastIteration())
+            {
+                nextIteration.Visibility = Visibility.Hidden;
+                timer.Stop();
+                
+                buttonStart.Content = "Start";
+                buttonStart.Background = Brushes.SpringGreen;
+                buttonStart.BorderBrush = Brushes.White;
+                buttonStart.Foreground = Brushes.White;
+                buttonStart.Visibility = Visibility.Hidden;
+                textStatus.Text = "Status: Stable";
+                textStatus.Foreground = new SolidColorBrush(Colors.Green);
+                timerStatus = false;
+                previousIterationVisibility();
+
+                if (mesh.isClean())
+                {
+                    saveSimulation.Visibility = Visibility.Hidden;
+                    restart.Visibility = Visibility.Hidden;
+
+                }
+                else
+                {
+                    saveSimulation.Visibility = Visibility.Visible;
+                    restart.Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                buttonStart.Visibility = Visibility.Visible;
+                nextIteration.Visibility = Visibility.Visible;
+                textStatus.Text = "Status: Unstable";
+                textStatus.Foreground = new SolidColorBrush(Colors.Red);
+                saveSimulation.Visibility = Visibility.Visible;
+                restart.Visibility = Visibility.Visible;
+            }
         }
 
         private void buttonStart_Click(object sender, RoutedEventArgs e)
+        {
+            chrono();
+        }
+
+        // VER SI ME LO CARGO O NO.
+        private void chrono()
         {
             if (!timerStatus)
             {
@@ -200,11 +232,25 @@ namespace GameOfLife
                 previousIteration.Visibility = Visibility.Visible;
                 nextIteration.Visibility = Visibility.Visible;
                 buttonStart.Content = "Start";
-                buttonStart.Background= Brushes.SpringGreen;
+                buttonStart.Background = Brushes.SpringGreen;
                 buttonStart.BorderBrush = Brushes.White;
                 buttonStart.Foreground = Brushes.White;
                 timer.Stop();
                 timerStatus = false;
+                previousIterationVisibility();
+
+            }
+        }
+
+        private void previousIterationVisibility()
+        {
+            if (history.Count <= 1)
+            {
+                previousIteration.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                previousIteration.Visibility = Visibility.Visible;
             }
         }
 
@@ -213,12 +259,24 @@ namespace GameOfLife
             history.Push(mesh.deepCopy());
             mesh.iterate();
             updateMesh();
+            previousIterationVisibility();
+
+            Boolean status = mesh.isLastIteration();
+            
         }
+
+
 
         private void previousIteration_Click(object sender, RoutedEventArgs e)
         {
-            mesh = history.Pop();
-            updateMesh();
+            try
+            {
+                mesh = history.Pop();
+                updateMesh();
+            }
+            catch (InvalidOperationException)
+            {
+            }
         }
 
         private void restart_Click(object sender, RoutedEventArgs e)
@@ -226,6 +284,7 @@ namespace GameOfLife
             timer.Stop();
             mesh.reset();
             history.Clear();
+            previousIterationVisibility();
             updateMesh();
             
         }
@@ -289,6 +348,7 @@ namespace GameOfLife
                 comboBox1.SelectedIndex = 0;
                 comboBox2.SelectedIndex = 0;
                 showElements();
+                previousIterationVisibility();
             }
             catch (FileFormatException)
             {
@@ -310,12 +370,13 @@ namespace GameOfLife
         private void image1_Click(object sender, MouseButtonEventArgs e)
         {
             Window1 win1 = new Window1();
-            win1.Show();
+            win1.ShowDialog();
         }
         private void image2_Click(object sender, MouseButtonEventArgs e)
         {
             Window2 win2 = new Window2();
-            win2.Show();
+            win2.ShowDialog();
         }
+
     }
 }
