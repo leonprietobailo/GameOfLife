@@ -181,10 +181,10 @@ namespace GameOfLife
         {
             if (!timerStatus)
             {
-                saveSimulation.IsEnabled = false;
-                restart.IsEnabled = false;
-                previousIteration.IsEnabled = false;
-                nextIteration.IsEnabled = false;
+                saveSimulation.Visibility = Visibility.Hidden;
+                restart.Visibility = Visibility.Hidden;
+                previousIteration.Visibility = Visibility.Hidden;
+                nextIteration.Visibility = Visibility.Hidden;
                 buttonStart.Content = "Stop";
                 buttonStart.Background = Brushes.Red;
                 buttonStart.BorderBrush = Brushes.White;
@@ -195,10 +195,10 @@ namespace GameOfLife
             }
             else
             {
-                saveSimulation.IsEnabled = true;
-                restart.IsEnabled = true;
-                previousIteration.IsEnabled = true;
-                nextIteration.IsEnabled = true;
+                saveSimulation.Visibility = Visibility.Visible;
+                restart.Visibility = Visibility.Visible;
+                previousIteration.Visibility = Visibility.Visible;
+                nextIteration.Visibility = Visibility.Visible;
                 buttonStart.Content = "Start";
                 buttonStart.Background= Brushes.SpringGreen;
                 buttonStart.BorderBrush = Brushes.White;
