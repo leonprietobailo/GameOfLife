@@ -255,7 +255,8 @@ namespace GameOfLife
         public void saveGrid()
         {
             SaveFileDialog dig = new SaveFileDialog();
-            dig.Filter = "(*.txt*)|*.*";
+            dig.Filter = "(*.txt)|*.*";
+            dig.DefaultExt = "txt";  
             if (dig.ShowDialog() == true)
             {
                 for (int n = 0; n < this.i; n++)

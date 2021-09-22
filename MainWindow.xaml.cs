@@ -40,8 +40,9 @@ namespace GameOfLife
             comboBox2.Items.Add("Dead boundaries");
             comboBox2.Items.Add("Reflective boundaries");
             timer.Tick += new EventHandler(dispatcherTimer_Tick);
-            timer.Interval = new TimeSpan(Convert.ToInt64(1/100e-9));
+            timer.Interval = new TimeSpan(Convert.ToInt64(1 / 100e-9));
             mesh = new Grid(0, 0);
+
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -150,8 +151,8 @@ namespace GameOfLife
                 {
                     if (mesh.getCellStatus(i, j))
                     {
-                        if (mesh.getStrategy()==0)
-                        {   
+                        if (mesh.getStrategy() == 0)
+                        {
                             rectangles[i, j].Fill = new SolidColorBrush(Colors.Aqua);
                         }
                         else
@@ -189,10 +190,6 @@ namespace GameOfLife
         {
             if (!timerStatus)
             {
-                saveSimulation.Visibility = Visibility.Hidden;
-                restart.Visibility = Visibility.Hidden;
-                previousIteration.Visibility = Visibility.Hidden;
-                nextIteration.Visibility = Visibility.Hidden;
                 buttonStart.Content = "Stop";
                 buttonStart.Background = Brushes.Red;
                 buttonStart.BorderBrush = Brushes.White;
@@ -203,10 +200,6 @@ namespace GameOfLife
             }
             else
             {
-                saveSimulation.Visibility = Visibility.Visible;
-                restart.Visibility = Visibility.Visible;
-                previousIteration.Visibility = Visibility.Visible;
-                nextIteration.Visibility = Visibility.Visible;
                 buttonStart.Content = "Start";
                 buttonStart.Background = Brushes.SpringGreen;
                 buttonStart.BorderBrush = Brushes.White;
@@ -249,7 +242,7 @@ namespace GameOfLife
             history.Clear();
             history.Push(mesh.deepCopy());
             updateMesh();
-            
+
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
@@ -262,7 +255,7 @@ namespace GameOfLife
         private void speedSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             var slider = sender as Slider;
-            double time = -3.0 / 400.0 * (slider.Value*10.0 - 400.0 / 3.0); //[s]
+            double time = -3.0 / 400.0 * (slider.Value * 10.0 - 400.0 / 3.0); //[s]
             ticks = Convert.ToInt64(time / 100e-9);
             timer.Interval = new TimeSpan(ticks);
         }
@@ -340,6 +333,5 @@ namespace GameOfLife
             Window2 win2 = new Window2();
             win2.ShowDialog();
         }
-
     }
 }
