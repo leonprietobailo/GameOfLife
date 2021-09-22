@@ -16,7 +16,6 @@ using System.Windows.Threading;
 using System.IO;
 using Microsoft.Win32;
 
-
 namespace GameOfLife
 {
     /// <summary>
@@ -24,6 +23,7 @@ namespace GameOfLife
     /// </summary>
     public partial class MainWindow : Window
     {
+
         int nRows, nColumns;
         Rectangle[,] rectangles;
         Stack<Grid> history = new Stack<Grid>();
@@ -31,6 +31,7 @@ namespace GameOfLife
         DispatcherTimer timer = new DispatcherTimer();
         Boolean timerStatus = false;
         long ticks;
+        //Color color;
 
         public MainWindow()
         {
@@ -42,6 +43,7 @@ namespace GameOfLife
             timer.Tick += new EventHandler(dispatcherTimer_Tick);
             timer.Interval = new TimeSpan(Convert.ToInt64(1/100e-9));
             mesh = new Grid(0, 0);
+            //color = Color.FromRgb(0, 255, 255);
         }
 
         private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
@@ -59,6 +61,7 @@ namespace GameOfLife
                     nColumns = Convert.ToInt32(textBox2.Text);
                     mesh = new Grid(nRows, nColumns);
                     rectangles = new Rectangle[nRows, nColumns];
+                    canvas1.Children.Clear();
                     for (int i = 0; i < nRows; i++)
                     {
                         for (int j = 0; j < nColumns; j++)
@@ -252,6 +255,8 @@ namespace GameOfLife
             try
             {
                 timer.Stop();
+                mesh.reset();
+                updateMesh();
                 mesh.loadGrid();
                 int[] size = new int[2];
                 size = mesh.getSize();
@@ -259,6 +264,7 @@ namespace GameOfLife
                 nRows = size[0];
                 nColumns = size[1];
                 rectangles = new Rectangle[nRows, nColumns];
+                canvas1.Children.Clear();
                 for (int i = 0; i < nRows; i++)
                 {
                     for (int j = 0; j < nColumns; j++)
