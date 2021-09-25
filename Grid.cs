@@ -13,13 +13,14 @@ namespace GameOfLife
         //ATRIBUTOS
         int i, j;
         Cell[,] array;
-        int strategy, boundaries;
+        int boundaries;
+        Rules rules;
 
         //CONSTRUCTOR
         public Grid(int iIn, int jIn)
         {
-            this.i = iIn;
-            this.j = jIn;
+            this.i = iIn + 2;
+            this.j = jIn + 2;
             this.array = new Cell[this.i, this.j];
             for (int n = 0; n < this.i; n++)
             {
@@ -28,62 +29,141 @@ namespace GameOfLife
                     array[n, s] = new Cell();
                 }
             }
+            rules = new Rules();
         }
 
         public Grid(Grid mesh)
         {
-            array = new Cell[mesh.getSize()[0], mesh.getSize()[1]];
+            array = new Cell[mesh.getSize()[0] + 2, mesh.getSize()[1] + 2];
 
             for (int n = 0; n < mesh.i; n++)
             {
                 for (int s = 0; s < mesh.j; s++)
                 {
                     array[n, s] = new Cell();
-                    if (mesh.getCellStatus(n,s))
+                    if (mesh.getCellStatus(n, s))
                     {
                         array[n, s].changeStatus();
                     }
                 }
             }
-
-
             i = array.GetLength(0);
             j = array.GetLength(1);
+            rules = mesh.rules;
         }
-        //METODOS
 
-        public void setStrategy(int s)
+        public void setRules(int r)
         {
-            strategy = s;
+            rules.setRules(r);
         }
 
-        public int getStrategy()
-        {  
-            return this.strategy;
+        public int getRules()
+        {
+            return rules.getRules();
         }
+
         public void setBoundaries(int b)
         {
             boundaries = b;
+            setBoundaryLayer();
         }
 
         public int[] getSize()
         {
             int[] size = new int[2];
-            size[0] = this.i;
-            size[1] = this.j;
+            size[0] = this.i - 2;
+            size[1] = this.j - 2;
             return size;
         }
-        
+
         public void reset()
         {
-            for (int n = 0; n < this.i; n++)
+            for (int n = 1; n < this.i - 1; n++)
             {
-                for (int s = 0; s < this.j; s++)
+                for (int s = 1; s < this.j - 1; s++)
                 {
                     array[n, s].healCell();
                 }
             }
         }
+
+        public void setBoundaryLayer()
+        {
+            if (boundaries == 1)
+            {
+                array[0, 0] = array[2, 2];
+                array[0, j - 1] = array[2, j - 3];
+                array[i - 1, 0] = array[i - 3, 2];
+                array[i - 1, j - 1] = array[i - 3, j - 3];
+
+                for (int n = 1; n < i - 1; n++)
+                {
+                    array[n, 0] = array[n, 2];
+                    array[n, j - 1] = array[n, j - 3];
+                }
+
+                for (int s = 1; s < i - 1; s++)
+                {
+                    array[0, s] = array[2, s];
+                    array[i - 1, s] = array[i - 3, s];
+                }
+            }
+            else
+            {
+                for (int n = 0; n < i; n++)
+                {
+                    array[n, 0] = new Cell();
+                    array[n, j - 1] = new Cell();
+                }
+
+                for (int s = 0; s < i; s++)
+                {
+                    array[0, s] = new Cell();
+                    array[i - 1, s] = new Cell();
+                }
+            }
+        }
+
+        //public int reflectiveBoundaries(int iIn, int jIn)
+        //{
+        //    int healthy = 0;
+        //    int nT, sT;
+        //    for (int n = iIn - 1; n <= iIn + 1; n++)
+        //    {
+        //        for (int s = jIn - 1; s <= jIn + 1; s++)
+        //        {
+        //            nT = n;
+        //            sT = s;
+
+        //            if (n < 0)
+        //            {
+        //                nT = n + 2;
+        //            }
+        //            if (s < 0)
+        //            {
+        //                sT = s + 2;
+        //            }
+        //            if (n >= i)
+        //            {
+        //                nT = n - 2;
+        //            }
+        //            if (s >= j)
+        //            {
+        //                sT = s - 2;
+        //            }
+
+        //            if (nT == iIn && sT == jIn)
+        //            {
+        //            }
+        //            else if (!array[nT, sT].getStatus())
+        //            {
+        //                healthy++;
+        //            }
+        //        }
+        //    }
+        //    return healthy;
+
+        //}
 
         public void changeCellStatus(int iIn, int jIn)
         {
@@ -101,161 +181,155 @@ namespace GameOfLife
             return deepCopyGrid;
         }
 
-        public void conwayAlgorithm()
-        {
-            Cell[,] newIt = new Cell[this.i, this.j];
-            for (int n = 0; n < this.i; n++)
-            {
-                for (int s = 0; s < this.j; s++)
-                {
-                    int infected = 8 - getBoundaries(n, s);
-                    newIt[n,s] = new Cell();
-                    if (array[n, s].getStatus()) // C = 1
-                    {
-                        if (infected == 2 || infected == 3)
-                        {
-                            newIt[n, s].changeStatus();
-                        }
-                    }
-                    else // C = 0
-                    {
-                        if (infected == 3)
-                        {
-                            newIt[n, s].changeStatus();
-                        }
-                    }
-                }
-            }
-            array = newIt;
-        }
+        //public void conwayAlgorithm()
+        //{
+        //    Cell[,] newIt = new Cell[this.i, this.j];
+        //    for (int n = 0; n < this.i; n++)
+        //    {
+        //        for (int s = 0; s < this.j; s++)
+        //        {
+        //            int infected = 8 - getBoundaries(n, s);
+        //            newIt[n,s] = new Cell();
+        //            if (array[n, s].getStatus()) // C = 1
+        //            {
+        //                if (infected == 2 || infected == 3)
+        //                {
+        //                    newIt[n, s].changeStatus();
+        //                }
+        //            }
+        //            else // C = 0
+        //            {
+        //                if (infected == 3)
+        //                {
+        //                    newIt[n, s].changeStatus();
+        //                }
+        //            }
+        //        }
+        //    }
+        //    array = newIt;
+        //}
 
-        public void covid19Algorithm()
-        {
-            Cell[,] newIt = new Cell[this.i, this.j];
-            for (int n = 0; n < this.i; n++)
-            {
-                for (int s = 0; s < this.j; s++)
-                {
-                    int infected = 8 - getBoundaries(n, s);
-                    newIt[n, s] = new Cell();
-                    if (array[n, s].getStatus()) // C = 1
-                    {
-                        if (infected == 2 || infected == 3 || infected == 4)
-                        {
-                            newIt[n, s].changeStatus();
-                        }
-                    }
-                    else // C = 0
-                    {
-                        if (infected == 3 || infected == 4)
-                        {
-                            newIt[n, s].changeStatus();
-                        }
-                    }
-                }
-            }
-            array = newIt;
-        }
+        //public void covid19Algorithm()
+        //{
+        //    Cell[,] newIt = new Cell[this.i, this.j];
+        //    for (int n = 0; n < this.i; n++)
+        //    {
+        //        for (int s = 0; s < this.j; s++)
+        //        {
+        //            int infected = 8 - getBoundaries(n, s);
+        //            newIt[n, s] = new Cell();
+        //            if (array[n, s].getStatus()) // C = 1
+        //            {
+        //                if (infected == 2 || infected == 3 || infected == 4)
+        //                {
+        //                    newIt[n, s].changeStatus();
+        //                }
+        //            }
+        //            else // C = 0
+        //            {
+        //                if (infected == 3 || infected == 4)
+        //                {
+        //                    newIt[n, s].changeStatus();
+        //                }
+        //            }
+        //        }
+        //    }
+        //    array = newIt;
+        //}
 
-        public int getBoundaries(int iIn, int jIn)
-        {
-            if (boundaries == 0)
-            {
-                return aliveBoundaries(iIn, jIn);
-            }
-            else
-            {
-                return reflectiveBoundaries(iIn, jIn);
-            }
-        }
+        //public int getBoundaries(int iIn, int jIn)
+        //{
+        //    if (boundaries == 0)
+        //    {
+        //        return aliveBoundaries(iIn, jIn);
+        //    }
+        //    else
+        //    {
+        //        return reflectiveBoundaries(iIn, jIn);
+        //    }
+        //}
 
-
-        public int aliveBoundaries(int iIn, int jIn)
+        public int countHealedNeighbors(int iIn, int jIn)
         {
-            int healthy = 0;
+
+            int healed = 0;
+            if (iIn == 2 & jIn == 2)
+            {
+                int a = 1;
+            }
+
             for (int n = iIn - 1; n <= iIn + 1; n++)
             {
                 for (int s = jIn - 1; s <= jIn + 1; s++)
                 {
-                    if (n < 0 || n >= i || s < 0 || s >= j)
-                    {
-                        healthy++;
-                    }
-                    else if (n == iIn && s == jIn)
-                    {
-                    }
-                    else
+                    if (!(n == iIn && s == jIn))
                     {
                         if (!array[n, s].getStatus())
                         {
-                            healthy++;
+                            healed++;
                         }
                     }
                 }
             }
-            return healthy;
+            return healed;
         }
 
-        public int reflectiveBoundaries(int iIn, int jIn)
-        {
-            int healthy = 0;
-            int nT, sT;
-            for (int n = iIn - 1; n <= iIn + 1; n++)
-            {
-                for (int s = jIn - 1; s <= jIn + 1; s++)
-                {
-                    nT = n;
-                    sT = s;
+        //public int aliveBoundaries(int iIn, int jIn)
+        //{
+        //    int healthy = 0;
+        //    for (int n = iIn - 1; n <= iIn + 1; n++)
+        //    {
+        //        for (int s = jIn - 1; s <= jIn + 1; s++)
+        //        {
+        //            if (n < 0 || n >= i || s < 0 || s >= j)
+        //            {
+        //                healthy++;
+        //            }
+        //            else if (n == iIn && s == jIn)
+        //            {
+        //            }
+        //            else
+        //            {
+        //                if (!array[n, s].getStatus())
+        //                {
+        //                    healthy++;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return healthy;
+        //}
 
-                    if (n < 0)
-                    {
-                        nT = n + 2;
-                    }
-                    if (s < 0)
-                    {
-                        sT = s + 2;
-                    }
-                    if (n >= i)
-                    {
-                        nT = n - 2;
-                    }
-                    if (s >= j)
-                    {
-                        sT = s - 2;
-                    }
 
-                    if (nT == iIn && sT == jIn)
-                    {
-                    }
-                    else if (!array[nT, sT].getStatus())
-                    {
-                        healthy++;
-                    }
-                }
-            }
-            return healthy;
-
-        }
 
         public void iterate()
         {
-            if (strategy == 0)
+            int neighborsHealed;
+            Grid temporary = this.deepCopy();
+            for (int n = 1; n < i - 1; n++)
             {
-                conwayAlgorithm();
+                for (int s = 1; s < j - 1; s++)
+                {
+                    {
+                        if (n == 2 & s == 2)
+                        {
+                            int a = 1;
+                        }
+                        neighborsHealed = countHealedNeighbors(n, s);
+                        temporary.array[n, s].setNextStatus(rules, neighborsHealed);
+                    }
+                }
             }
-            else
-            {
-                covid19Algorithm();
-
-            }
+            this.array = temporary.array; // cuidado
         }
 
         public int countInfected()
         {
             int counter = 0;
-            for (int n = 0; n < this.i; n++)
+
+            for (int n = 1; n < this.i - 1; n++)
             {
-                for (int s = 0; s < this.j; s++)
+                for (int s = 1; s < this.j - 1; s++)
                 {
                     if (array[n, s].getStatus())
                     {
@@ -270,17 +344,25 @@ namespace GameOfLife
         {
             SaveFileDialog dig = new SaveFileDialog();
             dig.Filter = "(*.txt)|*.*";
-            dig.DefaultExt = "txt";  
+            dig.DefaultExt = "txt";
+            
+
             if (dig.ShowDialog() == true)
             {
+                FileStream emptyFile = File.Create(dig.FileName);
+                emptyFile.Close();
                 for (int n = 0; n < this.i; n++)
                 {
                     for (int s = 0; s < this.j; s++)
                     {
                         if (array[n, s].getStatus())
-                            File.AppendAllText(dig.FileName,"1");
+                        {
+                            File.AppendAllText(dig.FileName, "1");
+                        }
                         else
+                        {
                             File.AppendAllText(dig.FileName, "0");
+                        }
                         if (s != j - 1)
                         {
                             File.AppendAllText(dig.FileName, " ");
@@ -339,7 +421,8 @@ namespace GameOfLife
                         else if (subs[n] == "0")
                         {
                         }
-                        else{
+                        else
+                        {
                             throw new FileFormatException();
                         }
 
@@ -363,7 +446,7 @@ namespace GameOfLife
             {
                 for (int s = 0; s < this.j; s++)
                 {
-                    if (!copy.getCellStatus(n,s) == this.getCellStatus(n,s))
+                    if (!copy.getCellStatus(n, s) == this.getCellStatus(n, s))
                     {
                         return false;
                     }
@@ -387,5 +470,4 @@ namespace GameOfLife
             return true;
         }
     }
-
 }

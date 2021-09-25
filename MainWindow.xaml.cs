@@ -42,8 +42,6 @@ namespace GameOfLife
             timer.Tick += new EventHandler(dispatcherTimer_Tick);
             timer.Interval = new TimeSpan(Convert.ToInt64(1 / 100e-9));
             mesh = new Grid(0, 0);
-
-
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -80,6 +78,7 @@ namespace GameOfLife
                     history.Push(mesh.deepCopy());
                     comboBox1.SelectedIndex = 0;
                     comboBox2.SelectedIndex = 0;
+                    mesh.setRules(comboBox1.SelectedIndex);
                     showElements();
 
                     if (mesh.getSize()[0] == 0 || mesh.getSize()[1] == 0)
@@ -134,10 +133,10 @@ namespace GameOfLife
         }
         private void rectangle_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Rectangle reg = (Rectangle)sender; // Obtenemos el rectangulo sobre el que se clicó
-            Point p = (Point)reg.Tag; // recuperamos el tag, que contiene las coordenadas de la casilla clicada
-            //casilla.Content = "(" + p.X + "," + p.Y + ")"; // Informamos al usuario de las coordenadas
-            //reg.Fill = new SolidColorBrush(Colors.Black); // Ponemos en negro la casilla
+            Rectangle reg = (Rectangle)sender;
+            Point p = (Point)reg.Tag;
+            p.X++;
+            p.Y++;
             mesh.changeCellStatus(Convert.ToInt32(p.X), Convert.ToInt32(p.Y));
             lastSelectedCellBox.Text = "(" + Convert.ToString(p.Y) + "," + Convert.ToString(p.X) + ")";
             updateMesh();
@@ -150,9 +149,9 @@ namespace GameOfLife
             {
                 for (int j = 0; j < nColumns; j++)
                 {
-                    if (mesh.getCellStatus(i, j))
+                    if (mesh.getCellStatus(i+1, j+1))
                     {
-                        if (mesh.getStrategy() == 0)
+                        if (mesh.getRules() == 0)
                         {
                             rectangles[i, j].Fill = new SolidColorBrush(Colors.Aqua);
                         }
@@ -197,6 +196,7 @@ namespace GameOfLife
                     buttonStart.Background = Brushes.Red;
                     buttonStart.BorderBrush = Brushes.White;
                     buttonStart.Foreground = Brushes.White;
+                    
 
                     timer.Start();
                     timerStatus = true;
@@ -221,6 +221,7 @@ namespace GameOfLife
             {
                 history.Push(mesh.deepCopy());
                 mesh.iterate();
+                mesh.setBoundaries(comboBox2.SelectedIndex);
                 updateMesh();
             }
         }
@@ -253,6 +254,7 @@ namespace GameOfLife
         {
             history.Push(mesh.deepCopy());
             mesh.iterate();
+            mesh.setBoundaries(comboBox2.SelectedIndex);
             updateMesh();
         }
 
@@ -314,6 +316,7 @@ namespace GameOfLife
                 updateMesh();
                 comboBox1.SelectedIndex = 0;
                 comboBox2.SelectedIndex = 0;
+                mesh.setRules(comboBox1.SelectedIndex);
                 showElements();
             }
             catch (FileFormatException)
@@ -324,7 +327,7 @@ namespace GameOfLife
 
         private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            mesh.setStrategy(comboBox1.SelectedIndex);
+            mesh.setRules(comboBox1.SelectedIndex);
             updateMesh();
         }
 
@@ -338,6 +341,7 @@ namespace GameOfLife
             Window1 win1 = new Window1();
             win1.ShowDialog();
         }
+
         private void image2_Click(object sender, MouseButtonEventArgs e)
         {
             Window2 win2 = new Window2();
