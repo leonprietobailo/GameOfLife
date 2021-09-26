@@ -9,19 +9,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace GameOfLife
 {
-    /// <summary>
-    /// Lógica de interacción para Window3.xaml
-    /// </summary>
-    public partial class Window3 : Page
-    {
-        public Window3()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Lógica de interacción para Window4.xaml
+	/// </summary>
+	public partial class Window3 : Window
+	{
+		public Window3()
+		{
+			InitializeComponent();
+		}
+
+
+	}
 }

@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 //using System.Collections;
 using System.Windows.Threading;
 using System.IO;
-//using Microsoft.Win32;
+using Microsoft.Win32;
 
 namespace GameOfLife
 {
@@ -131,6 +131,7 @@ namespace GameOfLife
                 saveSimulation.Visibility = Visibility.Visible;
                 previousIteration.Visibility = Visibility.Visible;
                 nextIteration.Visibility = Visibility.Visible;
+                AddVirus.Visibility = Visibility.Visible;
             }
         }
         private void rectangle_MouseDown(object sender, MouseButtonEventArgs e)
@@ -363,10 +364,21 @@ namespace GameOfLife
             win1.ShowDialog();
         }
 
-        private void image2_Click(object sender, MouseButtonEventArgs e)
+		private void AddVirus_Click(object sender, RoutedEventArgs e)
+		{
+            Window3 win3 = new Window3();
+            win3.ShowDialog();
+        }
+
+		private void image2_Click(object sender, MouseButtonEventArgs e)
         {
             Window2 win2 = new Window2();
             win2.ShowDialog();
+        }
+        private void AddVirus_Click(object sender, MouseButtonEventArgs e)
+        {
+            Window3 win3 = new Window3();
+            win3.BringIntoView();
         }
     }
 }
