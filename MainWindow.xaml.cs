@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+//using System.Linq;
+//using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+//using System.Windows.Data;
+//using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
+//using System.Windows.Media.Imaging;
+//using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Collections;
+//using System.Collections;
 using System.Windows.Threading;
 using System.IO;
-using Microsoft.Win32;
+//using Microsoft.Win32;
 
 namespace GameOfLife
 {
@@ -29,6 +29,7 @@ namespace GameOfLife
         DispatcherTimer timer = new DispatcherTimer();
         Boolean timerStatus = false;
         long ticks;
+        Rules r;
 
         public MainWindow()
         {
@@ -40,6 +41,7 @@ namespace GameOfLife
             timer.Tick += new EventHandler(dispatcherTimer_Tick);
             timer.Interval = new TimeSpan(Convert.ToInt64(1 / 100e-9));
             mesh = new Grid(0, 0);
+            r = new Rules();
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -76,7 +78,9 @@ namespace GameOfLife
                     history.Push(mesh.deepCopy());
                     comboBox1.SelectedIndex = 0;
                     comboBox2.SelectedIndex = 0;
-                    mesh.setRules(comboBox1.SelectedIndex);
+                    //r.setConway();
+                    //mesh.setRules(r);
+                    
                     showElements();
 
                     if (mesh.getSize()[0] == 0 || mesh.getSize()[1] == 0)
@@ -149,13 +153,17 @@ namespace GameOfLife
                 {
                     if (mesh.getCellStatus(i+1, j+1))
                     {
-                        if (mesh.getRules() == 0)
+                        if (comboBox1.SelectedIndex == 0)
                         {
                             rectangles[i, j].Fill = new SolidColorBrush(Colors.Aqua);
                         }
-                        else
+                        else if (comboBox1.SelectedIndex == 1)
                         {
                             rectangles[i, j].Fill = new SolidColorBrush(Colors.Red);
+                        }
+                        else
+                        {
+                            rectangles[i, j].Fill = new SolidColorBrush(Colors.Green);
                         }
                     }
                     else
@@ -314,7 +322,7 @@ namespace GameOfLife
                 updateMesh();
                 comboBox1.SelectedIndex = 0;
                 comboBox2.SelectedIndex = 0;
-                mesh.setRules(comboBox1.SelectedIndex);
+                
                 showElements();
             }
             catch (FileFormatException)
@@ -325,7 +333,22 @@ namespace GameOfLife
 
         private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            mesh.setRules(comboBox1.SelectedIndex);
+            if (comboBox1.SelectedIndex == 0)
+            {
+                r.setConway();
+                mesh.setRules(r);
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                r.setCOVID19();
+                mesh.setRules(r);
+            }
+            else
+            {
+                // NUEVA VENTANA
+                // RECUPERAR VALORES
+                // CONSTRUCTOR DOS VECTORES
+            }
             updateMesh();
         }
 

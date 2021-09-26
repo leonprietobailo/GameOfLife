@@ -52,14 +52,9 @@ namespace GameOfLife
             rules = mesh.rules;
         }
 
-        public void setRules(int r)
+        public void setRules(Rules r)
         {
-            rules.setRules(r);
-        }
-
-        public int getRules()
-        {
-            return rules.getRules();
+            rules = r;
         }
 
         public void setBoundaries(int b)
@@ -144,10 +139,6 @@ namespace GameOfLife
         {
 
             int healed = 0;
-            if (iIn == 2 & jIn == 2)
-            {
-                int a = 1;
-            }
 
             for (int n = iIn - 1; n <= iIn + 1; n++)
             {
@@ -174,10 +165,6 @@ namespace GameOfLife
                 for (int s = 1; s < j - 1; s++)
                 {
                     {
-                        if (n == 2 & s == 2)
-                        {
-                            int a = 1;
-                        }
                         neighborsHealed = countHealedNeighbors(n, s);
                         temporary.array[n, s].setNextStatus(rules, neighborsHealed);
                     }
