@@ -16,7 +16,7 @@
 		<Label Content="Healed" HorizontalAlignment="Left" Margin="141,111,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontWeight="Bold" Foreground="White" RenderTransformOrigin="1.302,0.5"/>
 		<Label Content="Infected" HorizontalAlignment="Left" Margin="135,145,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontWeight="Bold" Foreground="White"/>
 		<Label Content="Healed" HorizontalAlignment="Left" Margin="141,174,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontWeight="Bold" Foreground="White" RenderTransformOrigin="1.302,0.5"/>
-		<Button Content="Save" HorizontalAlignment="Left" Margin="272,222,0,0" VerticalAlignment="Top" Width="75" FontFamily="Consolas" FontWeight="Bold" Background="#00000000" BorderBrush="White" Foreground="White"/>
+		<Button Content="Save" HorizontalAlignment="Left" Margin="272,222,0,0" VerticalAlignment="Top" Width="75" FontFamily="Consolas" FontWeight="Bold" Background="#00000000" BorderBrush="White" Foreground="White" Click="Button_Click"/>
 		<Label Content="Virus Name" HorizontalAlignment="Left" Margin="93,218,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontWeight="Bold" Foreground="White"/>
 		<TextBlock HorizontalAlignment="Left" Margin="220,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 		<TextBox HorizontalAlignment="Left" Height="18" Margin="180,223,0,0" VerticalAlignment="Top" Width="64" FontFamily="Consolas" Background="Transparent" BorderBrush="White" Foreground="White" AllowDrop="False" CaretBrush="White" Grid.ColumnSpan="2" Panel.ZIndex="2"/>

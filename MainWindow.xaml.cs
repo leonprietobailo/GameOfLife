@@ -36,6 +36,7 @@ namespace GameOfLife
             InitializeComponent();
             comboBox1.Items.Add("Conway");
             comboBox1.Items.Add("Covid-19");
+            comboBox1.Items.Add("New Virus");
             comboBox2.Items.Add("Dead boundaries");
             comboBox2.Items.Add("Reflective boundaries");
             timer.Tick += new EventHandler(dispatcherTimer_Tick);
@@ -162,7 +163,7 @@ namespace GameOfLife
                         {
                             rectangles[i, j].Fill = new SolidColorBrush(Colors.Red);
                         }
-                        else
+                        else if (comboBox1.SelectedIndex == 2)
                         {
                             rectangles[i, j].Fill = new SolidColorBrush(Colors.Green);
                         }
@@ -344,11 +345,11 @@ namespace GameOfLife
                 r.setCOVID19();
                 mesh.setRules(r);
             }
-            else
+            else if (comboBox1.SelectedIndex == 2)
             {
-                // NUEVA VENTANA
-                // RECUPERAR VALORES
-                // CONSTRUCTOR DOS VECTORES
+                r.setNewVirus();
+                mesh.setRules(r);
+
             }
             updateMesh();
         }
