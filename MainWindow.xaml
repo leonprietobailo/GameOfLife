@@ -4,9 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="GameOfLife.MainWindow"
         Title="Game of life" Height="718" Width="1149" Icon="/GameOfLife;component/Images/GameIcon.png" ResizeMode="CanMinimize" OpacityMask="#FF565656" FontWeight="Normal" WindowStyle="SingleBorderWindow" Foreground="#FF565656" BorderBrush="#FF565656" Background="#FF565656" WindowStartupLocation="CenterScreen">
 
-	<Grid Background="#FF232323" Height="745">
-
-		<TextBox Margin="201,189,0,0" x:Name="textBox1" TextAlignment="Center" BorderBrush="White" TabIndex="0" Height="18" VerticalAlignment="Top" HorizontalAlignment="Left" Width="36" Background="#00000000" Foreground="White" FontFamily="Consolas" />
+    <Grid Background="#FF232323" Height="745">
+        <TextBox Margin="201,189,0,0" x:Name="textBox1" TextAlignment="Center" BorderBrush="White" TabIndex="0" Height="18" VerticalAlignment="Top" HorizontalAlignment="Left" Width="36" Background="#00000000" Foreground="White" FontFamily="Consolas" />
 		<Button Content="Load grid" Margin="265,180,0,0" x:Name="button1" Click="button1_Click" FontFamily="Consolas" Cursor="Arrow" Foreground="White" BorderBrush="White" Background="#00DDDDDD" TabIndex="2" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="126" FontWeight="Bold" />
 		<ComboBox HorizontalAlignment="Left" Margin="223,261,0,0" x:Name="comboBox1" VerticalAlignment="Top" SelectionChanged="comboBox1_SelectionChanged" Visibility="Hidden" Width="130" FontFamily="Consolas" Height="23" TabIndex="4" Foreground="Black" OpacityMask="#FF232323" BorderBrush="Black" Background="White"/>
 		<Slider Height="23" HorizontalAlignment="Left" Margin="204,419,0,0" x:Name="speedSlider" VerticalAlignment="Top" Width="140" ValueChanged="speedSlider_ValueChanged" Foreground="Red" Background="#00000000" BorderBrush="Red" TabIndex="6" Visibility="Hidden" />

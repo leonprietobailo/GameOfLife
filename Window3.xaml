@@ -28,7 +28,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="I0" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1" />
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1" />
+                <RadioButton Name="I0B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1" />
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -48,7 +48,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="I2" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="I2B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -58,7 +58,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="I3" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="I3B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -68,7 +68,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="I4" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="I4B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -78,7 +78,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="I5" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="I5B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -88,7 +88,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="I6" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="I6B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -98,7 +98,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="I7" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="I7B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -108,7 +108,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="I8" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="I8B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -118,7 +118,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="H0" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="H0B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -128,7 +128,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="H1" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="H1B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -138,7 +138,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="H2" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="H2B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -148,7 +148,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="H3" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="H3B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -158,7 +158,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="H4" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="H4B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -168,7 +168,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="H5" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="H5B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -178,7 +178,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="H6" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="H6B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -188,7 +188,7 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="H7" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="H7B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Height="45" Margin="229,84,0,0" VerticalAlignment="Top" Width="26" BorderBrush="#01FFFFFF" BorderThickness="0">
@@ -198,11 +198,8 @@
                     <RowDefinition Height="37*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Name="H8" Content="" HorizontalAlignment="Left" Margin="10,0.4,0,0" VerticalAlignment="Top" IsChecked="True" Grid.Row="1"/>
-                <RadioButton Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                <RadioButton Name="H8B" Content="" HorizontalAlignment="Left" Margin="10,30.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
             </Grid>
         </GroupBox>
-
-        
-
     </Grid>
 </Window>

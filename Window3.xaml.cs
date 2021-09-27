@@ -21,6 +21,7 @@ namespace GameOfLife
         bool[] Inextstatus = new bool[9];
         bool[] Hnextstatus = new bool[9];
         bool addedVirus = false;
+        bool modifiedVirus = false;
         string VirusName;
      
         public Window3()
@@ -69,10 +70,65 @@ namespace GameOfLife
         {
             return addedVirus;
         }
-
+        public bool modifiedvirus()
+        {
+            return modifiedVirus;
+        }
         public string getvirusname()
         {
             return VirusName;
+        }
+        public void setvirusname(string name)
+        {
+            VirusName=name;
+            virusname.Text = VirusName;
+        }
+        public void setNextStatus(bool[] INS, bool[]HNS)
+        {
+            Inextstatus=INS;
+            Hnextstatus=HNS;
+
+            I0.IsChecked = Inextstatus[0];
+            I1.IsChecked = Inextstatus[1];
+            I2.IsChecked = Inextstatus[2];
+            I3.IsChecked = Inextstatus[3];
+            I4.IsChecked = Inextstatus[4];
+            I5.IsChecked = Inextstatus[5];
+            I6.IsChecked = Inextstatus[6];
+            I7.IsChecked = Inextstatus[7];
+            I8.IsChecked = Inextstatus[8];
+
+            I0B.IsChecked = !Inextstatus[0];
+            I1B.IsChecked = !Inextstatus[1];
+            I2B.IsChecked = !Inextstatus[2];
+            I3B.IsChecked = !Inextstatus[3];
+            I4B.IsChecked = !Inextstatus[4];
+            I5B.IsChecked = !Inextstatus[5];
+            I6B.IsChecked = !Inextstatus[6];
+            I7B.IsChecked = !Inextstatus[7];
+            I8B.IsChecked = !Inextstatus[8];
+
+            H0.IsChecked = Hnextstatus[0];
+            H1.IsChecked = Hnextstatus[1];
+            H2.IsChecked = Hnextstatus[2];
+            H3.IsChecked = Hnextstatus[3];
+            H4.IsChecked = Hnextstatus[4];
+            H5.IsChecked = Hnextstatus[5];
+            H6.IsChecked = Hnextstatus[6];
+            H7.IsChecked = Hnextstatus[7];
+            H8.IsChecked = Hnextstatus[8];
+
+            H0B.IsChecked = !Hnextstatus[0];
+            H1B.IsChecked = !Hnextstatus[1];
+            H2B.IsChecked = !Hnextstatus[2];
+            H3B.IsChecked = !Hnextstatus[3];
+            H4B.IsChecked = !Hnextstatus[4];
+            H5B.IsChecked = !Hnextstatus[5];
+            H6B.IsChecked = !Hnextstatus[6];
+            H7B.IsChecked = !Hnextstatus[7];
+            H8B.IsChecked = !Hnextstatus[8];
+
+            modifiedVirus = true;
         }
     }
 }

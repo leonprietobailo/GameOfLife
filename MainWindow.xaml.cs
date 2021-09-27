@@ -32,6 +32,8 @@ namespace GameOfLife
         Rules r;
         bool[] infected;
         bool[] healed;
+        bool modified;
+        string name;
 
         public MainWindow()
         {
@@ -82,7 +84,7 @@ namespace GameOfLife
                     comboBox2.SelectedIndex = 0;
                     //r.setConway();
                     //mesh.setRules(r);
-                    
+
                     showElements();
 
                     if (mesh.getSize()[0] == 0 || mesh.getSize()[1] == 0)
@@ -154,7 +156,7 @@ namespace GameOfLife
             {
                 for (int j = 0; j < nColumns; j++)
                 {
-                    if (mesh.getCellStatus(i+1, j+1))
+                    if (mesh.getCellStatus(i + 1, j + 1))
                     {
                         if (comboBox1.SelectedIndex == 0)
                         {
@@ -205,7 +207,7 @@ namespace GameOfLife
                     buttonStart.Background = Brushes.Red;
                     buttonStart.BorderBrush = Brushes.White;
                     buttonStart.Foreground = Brushes.White;
-                    
+
 
                     timer.Start();
                     timerStatus = true;
@@ -288,7 +290,7 @@ namespace GameOfLife
                 timer.Stop();
                 mesh.reset();
                 mesh.loadGrid();
-                
+
                 if (mesh.isClean() || mesh == null)
                 {
                     mesh = copy1.deepCopy();
@@ -325,7 +327,7 @@ namespace GameOfLife
                 updateMesh();
                 comboBox1.SelectedIndex = 0;
                 comboBox2.SelectedIndex = 0;
-                
+
                 showElements();
             }
             catch (FileFormatException)
@@ -346,11 +348,10 @@ namespace GameOfLife
                 r.setCOVID19();
                 mesh.setRules(r);
             }
-            else if (comboBox1.SelectedIndex != 0 && comboBox1.SelectedIndex != 1)
+            else if (comboBox1.SelectedIndex == 2)
             {
-                r.setNewVirus(this.infected,this.healed);
+                r.setNewVirus(this.infected, this.healed);
                 mesh.setRules(r);
-
             }
             updateMesh();
         }
@@ -365,20 +366,36 @@ namespace GameOfLife
             Window1 win1 = new Window1();
             win1.ShowDialog();
         }
-		private void image2_Click(object sender, MouseButtonEventArgs e)
+
+        private void image2_Click(object sender, MouseButtonEventArgs e)
         {
             Window2 win2 = new Window2();
             win2.ShowDialog();
         }
-		private void AddVirus_Click(object sender, RoutedEventArgs e)
-		{
-            Window3 win3 = new Window3();
-            win3.ShowDialog();
-            if (win3.addedvirus())
+
+        private void AddVirus_Click(object sender, RoutedEventArgs e)
+        {
+            if (!modified)
             {
-                infected = win3.getINextStatus();
-                healed = win3.getHNextStatus();
-                comboBox1.Items.Add(win3.getvirusname());
+                Window3 win3 = new Window3();
+                win3.ShowDialog();
+                if (win3.addedvirus())
+                {
+                    infected = win3.getINextStatus();
+                    healed = win3.getHNextStatus();
+                    name = win3.getvirusname();
+                    comboBox1.Items.Add(name);
+                    AddVirus.Content = "Modify";
+                    modified = true;
+                }
+            }
+            else if (modified)
+            {
+                Window3 win4 = new Window3();
+                win4.setNextStatus(infected, healed);
+                win4.setvirusname(name);
+                comboBox1.Items.Remove(2);
+                win4.ShowDialog();    
             }
         }
     }
