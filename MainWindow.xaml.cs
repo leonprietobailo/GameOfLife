@@ -30,13 +30,14 @@ namespace GameOfLife
         Boolean timerStatus = false;
         long ticks;
         Rules r;
+        bool[] infected;
+        bool[] healed;
 
         public MainWindow()
         {
             InitializeComponent();
             comboBox1.Items.Add("Conway");
             comboBox1.Items.Add("Covid-19");
-            comboBox1.Items.Add("New Virus");
             comboBox2.Items.Add("Dead boundaries");
             comboBox2.Items.Add("Reflective boundaries");
             timer.Tick += new EventHandler(dispatcherTimer_Tick);
@@ -165,7 +166,7 @@ namespace GameOfLife
                         }
                         else if (comboBox1.SelectedIndex == 2)
                         {
-                            rectangles[i, j].Fill = new SolidColorBrush(Colors.Green);
+                            rectangles[i, j].Fill = new SolidColorBrush(Colors.Lime);
                         }
                     }
                     else
@@ -345,9 +346,9 @@ namespace GameOfLife
                 r.setCOVID19();
                 mesh.setRules(r);
             }
-            else if (comboBox1.SelectedIndex == 2)
+            else if (comboBox1.SelectedIndex != 0 && comboBox1.SelectedIndex != 1)
             {
-                r.setNewVirus();
+                r.setNewVirus(this.infected,this.healed);
                 mesh.setRules(r);
 
             }
@@ -364,22 +365,21 @@ namespace GameOfLife
             Window1 win1 = new Window1();
             win1.ShowDialog();
         }
-
-		private void AddVirus_Click(object sender, RoutedEventArgs e)
-		{
-            Window3 win3 = new Window3();
-            win3.ShowDialog();
-        }
-
 		private void image2_Click(object sender, MouseButtonEventArgs e)
         {
             Window2 win2 = new Window2();
             win2.ShowDialog();
         }
-        private void AddVirus_Click(object sender, MouseButtonEventArgs e)
-        {
+		private void AddVirus_Click(object sender, RoutedEventArgs e)
+		{
             Window3 win3 = new Window3();
-            win3.BringIntoView();
+            win3.ShowDialog();
+            if (win3.addedvirus())
+            {
+                infected = win3.getINextStatus();
+                healed = win3.getHNextStatus();
+                comboBox1.Items.Add(win3.getvirusname());
+            }
         }
     }
 }

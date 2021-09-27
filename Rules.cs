@@ -65,12 +65,10 @@ namespace GameOfLife
             healed[7] = false;
             healed[8] = false;
         }
-        public void setNewVirus()
+        public void setNewVirus(bool[] i, bool[] h)
         {
-            Window3 win3 = new Window3();
-            this.infected = win3.getINextStatus();
-            this.healed = win3.getHNextStatus();
-
+            infected = i;
+            healed = h;
         }
 
         public bool getNextStatus(int neighbors, bool isInfected)

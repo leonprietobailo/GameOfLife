@@ -20,14 +20,13 @@ namespace GameOfLife
     {
         bool[] Inextstatus = new bool[9];
         bool[] Hnextstatus = new bool[9];
-        Rules ruleS;
+        bool addedVirus = false;
+        string VirusName;
      
         public Window3()
         {
             InitializeComponent();
-            ruleS = new Rules();
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Inextstatus[0] = I0.IsChecked.Value;
@@ -50,8 +49,10 @@ namespace GameOfLife
             Hnextstatus[7] = H7.IsChecked.Value;
             Hnextstatus[8] = H8.IsChecked.Value;
 
-            ruleS.setNewVirus();
+            addedVirus = true;
+            VirusName = virusname.Text;
 
+            Close();
         }
 
         public bool[] getINextStatus()
@@ -64,5 +65,14 @@ namespace GameOfLife
             return this.Hnextstatus;
         }
 
+        public bool addedvirus()
+        {
+            return addedVirus;
+        }
+
+        public string getvirusname()
+        {
+            return VirusName;
+        }
     }
 }
