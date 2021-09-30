@@ -243,11 +243,16 @@ namespace GameOfLife
         {
             try
             {
-                mesh = history.Pop();
-                updateMesh();
+                if (history.Count > 1)
+                {
+                    mesh = history.Pop();
+                    updateMesh();
+                }
             }
+
             catch (InvalidOperationException)
             {
+                history.Clear();
             }
         }
 
