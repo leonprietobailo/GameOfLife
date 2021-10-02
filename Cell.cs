@@ -8,40 +8,40 @@ namespace GameOfLife
     class Cell
     {
         // ATRIBUTOS
-        private Boolean infected;
+        private bool infected;
 
         //CONSTRUCTORES
         public Cell()
         {
-            this.infected = false;
+            infected = false;
         }
 
         //METODOS
         public void healCell()
         {
-            this.infected = false;
+            infected = false;
         }
 
         public void sickCell()
         {
-            this.infected = true;
+            infected = true;
         }
 
         public void changeStatus()
         {
-            if (this.infected)
+            if (infected)
             {
-                this.infected = false;
+                infected = false;
             }
             else
             {
-                this.infected = true;
+                infected = true;
             }
         }
 
-        public Boolean getStatus()
+        public bool getStatus()
         {
-            return this.infected;
+            return infected;
         }
 
         //public void setNextStatus(Rules r, int neighborsHealed)

@@ -355,7 +355,8 @@ namespace GameOfLife
             }
             else if (comboBox1.SelectedIndex == 2)
             {
-                r.setNewVirus(this.infected, this.healed);
+
+                r.setNewVirus((bool[])infected.Clone(), (bool[])healed.Clone());
                 mesh.setRules(r);
             }
             updateMesh();
@@ -390,6 +391,7 @@ namespace GameOfLife
                     healed = win3.getHNextStatus();
                     name = win3.getvirusname();
                     comboBox1.Items.Add(name);
+                    comboBox1.SelectedIndex = 2;
                     AddVirus.Content = "Modify";
                     modified = true;
                 }
@@ -399,8 +401,16 @@ namespace GameOfLife
                 Window3 win4 = new Window3();
                 win4.setNextStatus(infected, healed);
                 win4.setvirusname(name);
-                comboBox1.Items.Remove(2);
-                win4.ShowDialog();    
+                comboBox1.Items.RemoveAt(2);
+                win4.ShowDialog();
+
+                infected = win4.getINextStatus();
+                healed = win4.getHNextStatus();
+
+                name = win4.getvirusname();
+                comboBox1.Items.Add(name);
+                comboBox1.SelectedIndex = 2;
+
             }
         }
     }
